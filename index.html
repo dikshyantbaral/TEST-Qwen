@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pragati - Study Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Pragati</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Subjects</a></li>
+                <li><a href="#">Progress</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="profile-pic">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=6366f1&color=fff" alt="Profile">
+                </div>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1>Welcome back, Student! 👋</h1>
+                <p class="subtitle">Ready to continue your learning journey?</p>
+                <div class="date-display">
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <!-- Study Streak Card -->
+                <div class="stat-card streak-card">
+                    <div class="card-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Study Streak</h3>
+                        <p class="stat-number" id="streakCount">12</p>
+                        <p class="stat-label">days in a row</p>
+                    </div>
+                    <div class="card-decoration">
+                        <i class="fas fa-fire fire-animation"></i>
+                    </div>
+                </div>
+
+                <!-- Today's Tasks Card -->
+                <div class="stat-card tasks-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Today's Tasks</h3>
+                        <p class="stat-number"><span id="completedTasks">5</span>/<span id="totalTasks">8</span></p>
+                        <p class="stat-label">tasks completed</p>
+                    </div>
+                    <div class="progress-ring">
+                        <svg width="60" height="60">
+                            <circle class="progress-bg" cx="30" cy="30" r="26"></circle>
+                            <circle class="progress-fill" cx="30" cy="30" r="26" id="taskProgress"></circle>
+                        </svg>
+                        <span class="progress-text" id="taskPercentage">63%</span>
+                    </div>
+                </div>
+
+                <!-- Study Time Card -->
+                <div class="stat-card time-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Study Time</h3>
+                        <p class="stat-number" id="studyTime">4h 30m</p>
+                        <p class="stat-label">today</p>
+                    </div>
+                    <div class="trend-indicator positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+15%</span>
+                    </div>
+                </div>
+
+                <!-- Progress Summary Card -->
+                <div class="stat-card progress-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Weekly Progress</h3>
+                        <p class="stat-number" id="weeklyProgress">78%</p>
+                        <p class="stat-label">goal achieved</p>
+                    </div>
+                    <div class="mini-chart">
+                        <div class="chart-bar" style="height: 40%"></div>
+                        <div class="chart-bar" style="height: 60%"></div>
+                        <div class="chart-bar" style="height: 45%"></div>
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar active" style="height: 65%"></div>
+                        <div class="chart-bar" style="height: 90%"></div>
+                        <div class="chart-bar" style="height: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions & Overview -->
+            <div class="overview-section">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn primary" id="startStudyBtn">
+                            <i class="fas fa-play"></i>
+                            <span>Start Study Session</span>
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Task</span>
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-book"></i>
+                            <span>Add Subject</span>
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>View Analytics</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Today's Tasks Overview -->
+                <div class="tasks-overview">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list-check"></i> Today's Tasks</h2>
+                        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="task-list" id="taskList">
+                        <div class="task-item completed">
+                            <input type="checkbox" checked>
+                            <div class="task-info">
+                                <h4>Mathematics - Calculus Practice</h4>
+                                <p><i class="far fa-clock"></i> 2 hours • <span class="subject-tag math">Math</span></p>
+                            </div>
+                            <div class="task-status">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="task-item completed">
+                            <input type="checkbox" checked>
+                            <div class="task-info">
+                                <h4>Physics - Newton's Laws</h4>
+                                <p><i class="far fa-clock"></i> 1.5 hours • <span class="subject-tag physics">Physics</span></p>
+                            </div>
+                            <div class="task-status">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="task-item active">
+                            <input type="checkbox">
+                            <div class="task-info">
+                                <h4>Chemistry - Organic Reactions</h4>
+                                <p><i class="far fa-clock"></i> 2 hours • <span class="subject-tag chemistry">Chemistry</span></p>
+                            </div>
+                            <div class="task-status">
+                                <span class="status-badge">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox">
+                            <div class="task-info">
+                                <h4>English - Essay Writing</h4>
+                                <p><i class="far fa-clock"></i> 1 hour • <span class="subject-tag english">English</span></p>
+                            </div>
+                            <div class="task-status">
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox">
+                            <div class="task-info">
+                                <h4>Computer Science - Data Structures</h4>
+                                <p><i class="far fa-clock"></i> 2.5 hours • <span class="subject-tag cs">CS</span></p>
+                            </div>
+                            <div class="task-status">
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Timer Modal -->
+            <div class="modal-overlay" id="studyModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-stopwatch"></i> Focus Timer</h2>
+                        <button class="close-btn" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="timer-display">
+                            <div class="time" id="timerDisplay">25:00</div>
+                        </div>
+                        <div class="timer-controls">
+                            <button class="timer-btn start" id="startTimer">
+                                <i class="fas fa-play"></i> Start
+                            </button>
+                            <button class="timer-btn pause" id="pauseTimer" disabled>
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button class="timer-btn reset" id="resetTimer">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                        <div class="timer-modes">
+                            <button class="mode-btn active" data-time="25">Focus</button>
+                            <button class="mode-btn" data-time="5">Short Break</button>
+                            <button class="mode-btn" data-time="15">Long Break</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
